@@ -1,0 +1,51 @@
+<div class="full-container">
+    <div class="header-container">
+        <div class="title-container">
+            <a href="#"><h1 class="title-page">SNK</h1></a>
+            <small class="shop">Shop</small>
+        </div>        
+        <div >
+            <ul class="list-container">
+                <a href="products"><li class="item">Productos</li></a>
+                <li class="item">Contacto</li>
+                <li class="item">Sobre nosotros</li>
+            </ul>
+        </div>
+    </div>
+
+
+    <div>
+        <h2 class="tittle-products">Lista de productos</h2>
+    </div>
+    {{!-- <div class="products-container">
+        <div class="product-item">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/1/1b/Square_200x200.png" alt="">
+            <p>Title:</p>
+            <p>Price:</p>
+            <p>Stock:</p>
+            <button class="button-item">Ver Mas</button>
+        </div>
+    </div> --}}
+    
+    <div class="products-container">        
+        {{#each products}}
+            <div class="product-item">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/1/1b/Square_200x200.png" alt="">
+                <p>Title: {{this.title}} </p>
+                <p>Description: {{this.description}}</p>
+                <p>Category: {{this.category}}</p>
+                <a href={{this._id}}><button class="button-item">Ver Mas</button></a>
+            </div>
+        {{/each}}
+    </div>
+            {{!-- <li class="list-product-item">{{this.description}}</li>
+            <li class="list-product-item">{{this.category}}</li>
+            <li class="list-product-item"></li>
+            <li class="list-product-item">{{this.thumbnail}}</li>
+            <li class="list-product-item"></li>
+            <li class="list-product-item">{{this.code}}</li>
+            <li class="list-product-item">{{this.status}}</li> --}}    
+</div>
+
+
+

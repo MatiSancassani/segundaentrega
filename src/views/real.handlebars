@@ -1,0 +1,30 @@
+<h2>Lista de productos</h2>
+<div id="form-container" class="total-contenedor">
+
+</div>
+    <form action="" id="product-form">
+        <label for="title">Title</label>
+        <input type="text" name="title" id="title" placeholder="Ingrese title">
+
+        {{!-- <label for="description">Description</label>
+        <input type="text" name="description" id="description" placeholder="Ingrese description"> --}}
+
+        <label for="price">Price:</label>
+        <input type="number" name="price" id="price" placeholder="Ingrese price">
+
+        <label for="stock">Stock:</label>
+        <input type="number" name="stock" id="stock" placeholder="Ingrese stock">
+        
+        {{!-- <label for="category">Category</label>
+        <input type="category" name="title" id="category" placeholder="Ingrese title">
+
+        <label for="title">Title</label>
+        <input type="text" name="title" id="title" placeholder="Ingrese title"> --}}
+
+        <button type="submit">Add Product</button>        
+    </form>
+
+<script src="/socket.io/socket.io.js"></script>
+<script src="/static/js/main.js"></script>
+
+

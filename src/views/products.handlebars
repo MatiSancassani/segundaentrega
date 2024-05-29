@@ -1,0 +1,11 @@
+<div class="product-hbs">
+    <h1>Products</h1>
+    {{#each products.payload}}
+        <p>Title: {{products.title}} </p>
+        <p>Description: {{products.description}}</p>
+        <p>Category: {{products.category}}</p>
+    {{/each}}
+    <div>
+        <p>Limit: {{products.limit}}</p>
+    </div>
+</div>

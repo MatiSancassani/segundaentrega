@@ -1,0 +1,193 @@
+@font-face {
+    font-family: 'Avante';
+    src: url(./Avante_Go.ttf);
+}
+/* CONFIG GENERALES */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.title-container {
+    font-family: 'Avante';
+}
+.title-page {
+    font-size: 3.5rem;
+    font-family: 'Avante';
+    text-decoration: none;
+    color: white;
+}
+body {
+    background: black;
+}
+.shop {
+    color: white;
+}
+h2 {
+    color: white;
+}
+.header-container {
+    margin-top: 2rem;
+    background-color: black;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.list-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem; 
+    list-style: none;
+}
+.item {    
+    font-size: 1rem;
+    cursor: pointer;
+    padding: 1rem;
+
+}
+.item:hover {
+    background: black;
+    border-radius: 20%;
+}
+
+.tittle-products {
+    text-align: center;
+    margin: 2rem 0;
+}
+a {
+    text-decoration: none;
+}
+.list-container li {
+    color: white;
+    font-size: 1.5rem;    
+    transition: .5s;
+}
+.list-container li:hover {
+    background-color: white;
+    color: black;
+    transition: .5s;
+}
+/* CONTENEDOR DE PRODUCTOS */
+
+.products-container {    
+    margin: 5rem 10rem;
+    background-color: white;
+    border-radius:2rem;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 2rem;
+
+}
+
+.product-item {    
+    font-family: system-ui, sans-serif;
+    background-color: black;
+    color: white;
+    margin: 3rem 0;
+    font-size: 1.5rem;
+    border-radius:1rem;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+
+.button-item {
+    font-size: 1.5rem;
+    margin: 1rem 0;
+    border: none;
+    padding: 1rem;
+    border-radius: .5rem;
+    cursor: pointer;
+    transition: .3s;
+}
+.button-item:hover {
+    background: rgb(0, 0, 0);
+    color: white;
+    transform: translateY(5px);
+    transition: .3s;
+}
+/* REALTIME PLANTILLA */
+.total-contenedor {
+    background: white;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding: 2rem;
+    gap: 2rem;
+}
+.realtime-item {
+    background-color: black;
+    padding: 2rem;
+    color: white;
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+/* ITEM DETAIL PAGE */
+
+.item-container {
+    margin: 5rem 10rem;
+    background-color: white;
+    border-radius:2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.item-children {    
+    font-family: system-ui, sans-serif;
+    background-color: black;
+    color: white;
+    margin: 3rem 0;
+    font-size: 1.5rem;
+    border-radius:1rem;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+.counter {
+    font-size: 2rem;
+    padding: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+}
+
+.counter button {
+    font-size: 3rem;
+    width: 4rem;
+    border-radius: 1rem;
+    cursor: pointer;
+    border: none;
+}
+.addCart button {
+    padding: .2rem;
+    font-size: 1.5rem; 
+    margin-bottom: .5rem;
+    border-radius: 1rem;
+    cursor: pointer;
+    border: none;
+}
+
+.addCart button:hover {
+    background-color: black;
+    color: white;
+}
+
+.product-hbs {
+    background: white;
+}
+
+
