@@ -28,13 +28,13 @@
     </div> --}}
     
     <div class="products-container">        
-        {{#each products}}
+        {{#each products.docs}}
             <div class="product-item">
                 <img src="https://upload.wikimedia.org/wikipedia/commons/1/1b/Square_200x200.png" alt="">
-                <p>Title: {{this.title}} </p>
-                <p>Description: {{this.description}}</p>
-                <p>Category: {{this.category}}</p>
-                <a href={{this._id}}><button class="button-item">Ver Mas</button></a>
+                <p>Title: {{title}} </p>
+                <p>Description: {{description}}</p>
+                <p>Category: {{category}}</p>
+                <a href={{_id}}><button class="button-item">Ver Mas</button></a>
             </div>
         {{/each}}
     </div>

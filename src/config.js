@@ -11,6 +11,7 @@ const config = {
     MONGODB_URI: ('mongodb+srv://matisancassani:mati123@cluster0.lcblgku.mongodb.net/SegundaPreEntrega'),
     // MONGODB_URI: ('mongodb+srv://matisancassani:M5i03s98@cluster0.lcblgku.mongodb.net/database')
     // 
+    PRODUCTS_PER_PAGE: 2
 
 }
 

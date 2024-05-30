@@ -1,0 +1,10 @@
+<div class="cart-hbs">
+    <h1>Lista de productos de un carrito</h1>
+
+    {{#each cart.products}}
+        <h4>Nombre del producto{{this.id.title}}</h4>
+        <p>Descripcion {{this.id.description}}</p>
+        <p>Precio {{this.id.price}}</p>
+        <p>Cantidad {{this.quantity}}</p>
+    {{/each}}
+</div>

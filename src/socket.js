@@ -1,6 +1,7 @@
 import { Server } from "socket.io";
-import productModel from './dao/models/products.model.js'
-import cartModel from './dao/models/carts.model.js'
+import productModel from './dao/models/products.model.js';
+
+
 
 
 const initSocket = (httpServer) => {
@@ -15,7 +16,7 @@ const initSocket = (httpServer) => {
             const newProduct = await productModel.create({...product});
             if (newProduct) {
                 products.push(newProduct)
-                socket.emit('products', products);                
+                socket.emit('products', products);                  
             }
         })
     })

@@ -1,11 +1,27 @@
 <div class="product-hbs">
     <h1>Products</h1>
-    {{#each products.payload}}
-        <p>Title: {{products.title}} </p>
-        <p>Description: {{products.description}}</p>
-        <p>Category: {{products.category}}</p>
+    {{#each data.docs}}
+
+        <p>Title: {{title}} </p>
+        <p>Description: {{description}}</p>
+        <p>Category: {{category}}</p>
+        <p>Price: {{price}}</p>
+        <a href={{_id}}><button class="button-item">Add to cart</button></a>
+
     {{/each}}
     <div>
-        <p>Limit: {{products.limit}}</p>
+        <div class="pagination">
+            <p>Limite establecido por pagina: {{data.limit}}</p>
+            
+            {{#if data.hasPrevPage}}
+            <a class="a3" href="/products/{{data.prevPage}}">Anterior</a>
+            {{/if}}
+            <small>Pagina:{{data.page}} de {{data.totalPages}}</small>
+            {{#if data.nextPage}}
+            <a class="a3" href="/products/{{data.nextPage}}">Siguiente</a>
+            {{/if}}
+            <p></p>
+        </div>
+    
     </div>
 </div>
