@@ -1,16 +1,35 @@
+<style>
+    .logged-hbs {
+    color: white;
+}
+
+</style>
+
 <div class="full-container">
     <div class="header-container">
         <div class="title-container">
             <a href="#"><h1 class="title-page">SNK</h1></a>
             <small class="shop">Shop</small>
-        </div>        
+        </div>
+              
         <div >
             <ul class="list-container">
                 <a href="products"><li class="item">Productos</li></a>
                 <li class="item">Contacto</li>
                 <li class="item">Sobre nosotros</li>
+                
+
             </ul>
         </div>
+        <div>   
+            {{#if user}}
+                <h3 class="logged-hbs">Bienvenido {{user}}!</h3>                
+                <a href="/logout"><button type="submit" class="btn btn-success">Salir</button></a>
+            {{else}}
+                <a href="/login"><button type="submit" class="btn btn-success">Sign in</button></a>
+                <a href="/register"><button type="submit" class="btn btn-success">Sign up</button></a>
+            {{/if}}
+        </div>  
     </div>
 
 

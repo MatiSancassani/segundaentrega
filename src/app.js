@@ -1,16 +1,20 @@
 import express from 'express';
 import mongoose from 'mongoose';
 import handlebars from 'express-handlebars'
+import session from 'express-session';
+import MongoStore from 'connect-mongo';
+// import FileStore from 'session-file-store' Al usar almancenamiento en mongo desabilitamos, si queremos almacenar en archivo activamos
 
 import config from './config.js';
 import initSocket from './socket.js';
 
 import productsRoutes from './routes/products.routes.js'
 import cartsRouter from './routes/carts.routes.js';
-import viewsRouter from './routes/views.routes.js'
-
+import viewsRouter from './routes/views.routes.js';
 
 const app = express();
+// const fileStorage = fileStorage(session); Habilitamos si necesitamos almacenar archivo
+
 
 const expressInstance = app.listen(config.PORT, async () => {
     await mongoose.connect(config.MONGODB_URI);
@@ -20,6 +24,17 @@ const expressInstance = app.listen(config.PORT, async () => {
 
     app.use(express.json());
     app.use(express.urlencoded({ extended: true}));
+
+    app.use(session({
+        // store:new fileStorage({ path: './session', ttl: 15, retries: 0 }), //Almacenamiento archivo
+        store: MongoStore.create({
+            mongoUrl: config.MONGODB_URI,
+            ttl: 1000 //seg
+        }), //Almacenando en la Base de datos
+        secret: config.SECRET,
+        resave: true,
+        saveUninitialized: true
+    }))
 
     app.engine('handlebars', handlebars.engine());
     app.set('views', `${config.DIRNAME}/views`);
