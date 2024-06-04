@@ -23,7 +23,7 @@ const expressInstance = app.listen(config.PORT, async () => {
     app.set('socketServer', socketServer);
 
     app.use(express.json());
-    app.use(express.urlencoded({ extended: true}));
+    app.use(express.urlencoded({ extended: true})); 
 
     app.use(session({
         // store:new fileStorage({ path: './session', ttl: 15, retries: 0 }), //Almacenamiento archivo
