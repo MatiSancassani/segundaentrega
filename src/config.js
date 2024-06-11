@@ -12,7 +12,10 @@ const config = {
     // MONGODB_URI: ('mongodb+srv://matisancassani:M5i03s98@cluster0.lcblgku.mongodb.net/(nombre de la base de datos)')
     // 
     PRODUCTS_PER_PAGE: 2,
-    SECRET: 'coder'
+    SECRET: 'coder',
+    GITHUB_CLIENT_ID: 'Iv23livty0x0eDKBjIbh',
+    GITHUB_CLIENT_SECRET: '806e768925fd9e314caea773da483a3abb333ba3',
+    GITHUB_CALLBACK_URL: 'http://localhost:8080/ghlogin'    
 
 }
 

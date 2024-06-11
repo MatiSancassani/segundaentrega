@@ -1,5 +1,6 @@
 import { request, response } from "express"
 import { getUserEmail, registerUser } from "../../services/users.services.js";
+import { createHash, isValidPassword } from "../../utils/bcryptPassword.js";
 
 
 
@@ -13,39 +14,26 @@ export const registerGet = async (req = request, res =response) => {
 };
 
 export const registerPost = async (req = request, res =response) => {
-        
-    const { password, confirmPassword } = req.body;
-
-    if (password !== confirmPassword) {
+    if (!req.user) 
         return res.redirect('/register');
-    }
-    const user = await registerUser({...req.body});
-
-    if (user) {
-        const userName = `${user.name} ${user.lastName}`;
-        req.session.user = userName;
-        req.session.rol = user.rol;
-
-        return res.redirect('/login');
         
-    }
-
-    return res.redirect('/register');
+    return res.redirect('/login');
+    
 };
 
-export const loginPost = async (req = request, res =response) => {
+export const login = async (req = request, res =response) => {
 
-        const {email, password } = req.body;
-        const user = await getUserEmail(email);
-
-        if (user && user.password === password) {
-        const userName = `${user.name} ${user.lastName}`;
-        req.session.user = userName;
-        req.session.rol = user.rol;
-        return res.redirect('/products');
+       if (!req.user)
+            return res.redirect('/login');
+        
+        req.session.user = {
+            name:req.user.name, 
+            lastName:req.user.lastName, 
+            email:req.user.email, 
+            rol:req.user.rol
         }
-
-        return res.redirect('/login');
+       return res.redirect('/products')
+       
 };
 
 export const logout = async (req = request, res =response) => {
@@ -59,5 +47,18 @@ export const logout = async (req = request, res =response) => {
         res.status(500).send({ origin: config.SERVER, payload: null, error: err.message });
     }
 };
+
+// export const loginGithub = async (req = request, res =response) => {
+//     if (!req.user) {
+//         return res.redirect('/login');
+//     }
+//     req.session.user = {
+//         name:req.user.name, 
+//         lastName:req.user.lastName, 
+//         email:req.user.email, 
+//         rol:req.user.rol
+//     }
+//    return res.redirect('/products')
+// }
 
 

@@ -3,10 +3,12 @@ import mongoose from 'mongoose';
 import handlebars from 'express-handlebars'
 import session from 'express-session';
 import MongoStore from 'connect-mongo';
+import passport from 'passport';
 // import FileStore from 'session-file-store' Al usar almancenamiento en mongo desabilitamos, si queremos almacenar en archivo activamos
 
 import config from './config.js';
 import initSocket from './socket.js';
+import { initialPassport } from './config/passport.strategies.js';
 
 import productsRoutes from './routes/products.routes.js'
 import cartsRouter from './routes/carts.routes.js';
@@ -35,6 +37,10 @@ const expressInstance = app.listen(config.PORT, async () => {
         resave: true,
         saveUninitialized: true
     }))
+
+    initialPassport();
+    app.unsubscribe(passport.initialize());
+    app.use(passport.session());
 
     app.engine('handlebars', handlebars.engine());
     app.set('views', `${config.DIRNAME}/views`);

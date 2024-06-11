@@ -3,9 +3,9 @@ import config from '../config.js';
 import productsModel from '../dao/models/products.model.js';
 import ProductsManager from '../services/products.services.js';
 import { getCartByIdService } from '../services/carts.services.js';
-import { loginGet, loginPost, logout, registerGet, registerPost } from '../dao/controllers/users.controllers.js';
+import { loginGet, login, logout, registerGet, registerPost } from '../dao/controllers/users.controllers.js';
 import { auth } from '../middleware/auth.js';
-
+import passport from 'passport';
 
 const router = Router();
 
@@ -28,6 +28,11 @@ router.get('/realTime', auth, async (req, res) => {
     res.render('real', {products, title: 'Real Time'});
 });
 
+router.get('/profile', async (req, res) => {
+    const user = req.session.user
+    res.render('profile', {user});
+});
+
 router.get('/cart/:cid', auth, async (req, res) => {
     const { cid } = req.params;
     const cart = await getCartByIdService(cid);
@@ -36,12 +41,14 @@ router.get('/cart/:cid', auth, async (req, res) => {
 
 
 router.get('/login', loginGet);;
-router.post('/login', loginPost)
+router.post('/login',passport.authenticate('login', {failureRedirect:'/login'}),login)
 router.get('/register', registerGet);
-router.post('/register', registerPost);
+router.post('/register',passport.authenticate('register', {failureRedirect:'/register'}) ,registerPost);
 router.get('/logout', logout); 
 
 
+router.get('/github', passport.authenticate('github', {scope:['user:email']}), async(req, res)=>{});
+router.get('/ghlogin', passport.authenticate('github',{failureRedirect:'/register'}), login)
 
 
 
