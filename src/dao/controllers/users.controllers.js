@@ -1,12 +1,10 @@
 import { request, response } from "express"
-import { getUserEmail, registerUser } from "../../services/users.services.js";
-import { createHash, isValidPassword } from "../../utils/bcryptPassword.js";
 
 
 
 
 export const loginGet = async (req = request, res =response) => {
-    return res.render ('login', {title: 'Login'})
+    return res.render ('login', {showError: req.query.error ? true : false, errorMessage: req.query.error, title: 'Login'})
 };
 
 export const registerGet = async (req = request, res =response) => {
@@ -30,10 +28,30 @@ export const login = async (req = request, res =response) => {
             name:req.user.name, 
             lastName:req.user.lastName, 
             email:req.user.email, 
+            image: req.user.image,
             rol:req.user.rol
         }
+
+
        return res.redirect('/products')
        
+};
+
+export const jwtlogin = async (req = request, res =response) => {
+    try {
+        // Passport inyecta los datos del done en req.user
+        // Creamos un token (una nueva credencial) para enviarle al usuario
+        const token = createToken(req.user, '1h');
+        // Notificamos al navegador para que almacene el token en una cookie
+        res.cookie(`${config.APP_NAME}_cookie`, token, { maxAge: 60 * 60 * 1000, httpOnly: true });
+        res.status(200).send({ origin: config.SERVER, payload: 'Usuario autenticado' });
+        // También podemos retornar el token en la respuesta, en este caso el cliente tendrá
+        // que almacenar manualmente el token.
+        // res.status(200).send({ origin: config.SERVER, payload: 'Usuario autenticado', token: token });
+    } catch (err) {
+        res.status(500).send({ origin: config.SERVER, payload: null, error: err.message });
+    }
+    
 };
 
 export const logout = async (req = request, res =response) => {
@@ -47,18 +65,4 @@ export const logout = async (req = request, res =response) => {
         res.status(500).send({ origin: config.SERVER, payload: null, error: err.message });
     }
 };
-
-// export const loginGithub = async (req = request, res =response) => {
-//     if (!req.user) {
-//         return res.redirect('/login');
-//     }
-//     req.session.user = {
-//         name:req.user.name, 
-//         lastName:req.user.lastName, 
-//         email:req.user.email, 
-//         rol:req.user.rol
-//     }
-//    return res.redirect('/products')
-// }
-
 

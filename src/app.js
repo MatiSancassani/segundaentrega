@@ -4,6 +4,7 @@ import handlebars from 'express-handlebars'
 import session from 'express-session';
 import MongoStore from 'connect-mongo';
 import passport from 'passport';
+import cookieParser from 'cookie-parser';
 // import FileStore from 'session-file-store' Al usar almancenamiento en mongo desabilitamos, si queremos almacenar en archivo activamos
 
 import config from './config.js';
@@ -26,7 +27,9 @@ const expressInstance = app.listen(config.PORT, async () => {
 
     app.use(express.json());
     app.use(express.urlencoded({ extended: true})); 
+    app.use(cookieParser(config.SECRET));
 
+    
     app.use(session({
         // store:new fileStorage({ path: './session', ttl: 15, retries: 0 }), //Almacenamiento archivo
         store: MongoStore.create({
@@ -39,7 +42,7 @@ const expressInstance = app.listen(config.PORT, async () => {
     }))
 
     initialPassport();
-    app.unsubscribe(passport.initialize());
+    app.use(passport.initialize());
     app.use(passport.session());
 
     app.engine('handlebars', handlebars.engine());

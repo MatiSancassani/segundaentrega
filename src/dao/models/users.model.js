@@ -12,8 +12,10 @@ const usersSchema = new mongoose.Schema ({
     password: { type: String, required: [true, 'Password is required'] },
     rol: { type: String,  default:'user', enum: ['user', 'admin'] },
     status: { type: Boolean, required: false },
-    dateOfCreation: { type: Date, default: Date.now },    
+    dateOfCreation: { type: Date, default: Date.now },  
+    image: {type: String},  
     github: {type: Boolean, default: false},
+    google: {type: Boolean, default: false},
     
 });
 

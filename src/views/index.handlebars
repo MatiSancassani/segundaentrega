@@ -14,16 +14,20 @@
               
         <div >
             <ul class="list-container">
-                <a href="products"><li class="item">Productos</li></a>
+                <a href="/products/1"><li class="item">Productos</li></a>
                 <li class="item">Contacto</li>
                 <li class="item">Sobre nosotros</li>
                 
 
             </ul>
         </div>
-        <div>   
+        <div>
             {{#if user}}
-                <h3 class="logged-hbs">Bienvenido {{user.name}}!</h3>                
+            <div class="hbs-container">
+                <h3 class="logged-hbs">Bienvenido {{user.name}}!</h3>               
+                <img class="img-github" src="{{user.image}}" alt="Imagen del usuario">           
+            </div>
+                
                 <a href="/logout"><button type="submit" class="btn btn-success">Salir</button></a>
             {{else}}
                 <a href="/login"><button type="submit" class="btn btn-success">Sign in</button></a>
