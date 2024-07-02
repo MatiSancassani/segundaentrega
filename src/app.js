@@ -5,6 +5,7 @@ import session from 'express-session';
 import MongoStore from 'connect-mongo';
 import passport from 'passport';
 import cookieParser from 'cookie-parser';
+import cors from 'cors';
 // import FileStore from 'session-file-store' Al usar almancenamiento en mongo desabilitamos, si queremos almacenar en archivo activamos
 
 import config from './config.js';
@@ -25,6 +26,7 @@ const expressInstance = app.listen(config.PORT, async () => {
     const socketServer = initSocket(expressInstance);
     app.set('socketServer', socketServer);
 
+    app.use(cors());
     app.use(express.json());
     app.use(express.urlencoded({ extended: true})); 
     app.use(cookieParser(config.SECRET));
